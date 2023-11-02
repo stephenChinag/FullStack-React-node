@@ -1,5 +1,5 @@
 import Meals from "./components/Meals";
-import Header from "./components/header";
+import Header from "./components/Header";
 
 function App() {
   return (
