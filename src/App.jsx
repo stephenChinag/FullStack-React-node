@@ -1,13 +1,18 @@
 import Meals from "./components/Meals";
 import Header from "./components/Header";
 import { CartContextProvider } from "./store/CartContext";
+import { UserPorgresContextProvider } from "./store/UserProgressContext";
+import Cart from "./components/Cart";
 function App() {
   return (
     <>
-      <CartContextProvider>
-        <Header />
-        <Meals />
-      </CartContextProvider>
+      <UserPorgresContextProvider>
+        <CartContextProvider>
+          <Header />
+          <Meals />
+          <Cart />
+        </CartContextProvider>
+      </UserPorgresContextProvider>
     </>
   );
 }

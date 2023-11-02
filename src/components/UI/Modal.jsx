@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-const Modal = ({ children, open, className }) => {
+const Modal = ({ children, open, className = "" }) => {
   const dialog = useRef();
   useEffect((open) => {
     if (open) {
