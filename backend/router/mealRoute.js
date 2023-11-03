@@ -4,5 +4,5 @@ const router = express.Router();
 
 router.get("/meals", mealController.getMeals);
 
-router.post("/order", mealController.postOrder);
+router.post("/orders", mealController.postOrder);
 module.exports = router;
