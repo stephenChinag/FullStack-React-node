@@ -1,17 +1,15 @@
-import Meals from "./components/Meals";
-import Header from "./components/Header";
-import { CartContextProvider } from "./store/CartContext";
-import { UserPorgresContextProvider } from "./store/UserProgressContext";
-import Cart from "./components/Cart";
+import Meals from "./components/Meals.jsx";
+import Header from "./components/Header.jsx";
+import { CartContextProvider } from "./store/CartContext.jsx";
+import Cart from "./components/Cart.jsx";
+
 function App() {
   return (
-    <UserPorgresContextProvider>
-      <CartContextProvider>
-        <Header />
-        <Meals />
-        <Cart />
-      </CartContextProvider>
-    </UserPorgresContextProvider>
+    <CartContextProvider>
+      <Header />
+      <Meals />
+      <Cart />
+    </CartContextProvider>
   );
 }
 

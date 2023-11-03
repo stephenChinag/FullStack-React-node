@@ -3,53 +3,29 @@ import Modal from "./UI/Modal";
 import CartContext from "../store/CartContext";
 import { currencyFormmatter } from "../util/formatting";
 import Button from "./UI/Button";
-import UserPorgresContext from "../store/UserProgressContext";
-import CartItem from "./CartItem";
+export default function Cart() {
+  const CartCtx = useContext(CartContext);
 
-const Cart = () => {
-  const cartCtx = useContext(CartContext);
-  const userProgressCtx = useContext(UserPorgresContext);
-
-  const cartTotal = cartCtx.items.reduce(
+  const totalPrice = CartCtx.items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
     0
   );
-  //
 
-  function handleCloseCart() {
-    userProgressCtx.hideCart();
-  }
-
-  function addItem(item) {
-    cartCtx.addItem(item);
-  }
-  function removeItem(item) {
-    cartCtx.removeItem(item.id);
-  }
   return (
-    <Modal className="cart" open={userProgressCtx.progress === "cart"}>
-      <h1>Your Cart</h1>
+    <Modal className="cart">
+      <h2> Your Cart </h2>
       <ul>
-        {cartCtx.items.map((item) => (
-          <CartItem
-            key={item.id}
-            name={item.name}
-            quantity={item.quantity}
-            price={item.price}
-            onDecrease={removeItem}
-            onIncrease={addItem}
-          />
+        {CartCtx.items.map((item) => (
+          <li key={item.id}>
+            {item.name}- {item.id}
+          </li>
         ))}
       </ul>
-      <p className="cart-total">{currencyFormmatter.format(cartTotal)}</p>
+      <p className="cart-total">{currencyFormmatter.format(totalPrice)} </p>
       <p className="modal-actions">
-        <Button textOnly onClick={handleCloseCart}>
-          Close
-        </Button>
-        <Button onClick={handleCloseCart}> Go to CheckOut</Button>
+        <Button textOnly> Close</Button>
+        <Button> Go to CheckOut</Button>
       </p>
     </Modal>
   );
-};
-
-export default Cart;
+}
