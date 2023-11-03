@@ -37,10 +37,11 @@ const cartReducer = (state, action) => {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
     );
-    const updatedItems = [...state.items];
+
     const existingCartItem = state.items[existingCartItemIndex];
-    if (existingCartItemIndex.quantity === 1) {
-      updatedItems.splice(existingCartItemIndex);
+    const updatedItems = [...state.items];
+    if (existingCartItem.quantity === 1) {
+      updatedItems.splice(existingCartItemIndex, 1);
     } else {
       const updatedItem = {
         ...existingCartItem,
@@ -48,7 +49,7 @@ const cartReducer = (state, action) => {
       };
       updatedItems[existingCartItemIndex] = updatedItem;
     }
-    return { ...state, item: updatedItems };
+    return { ...state, items: updatedItems };
   }
   return state;
 };
