@@ -10,6 +10,7 @@ const UserPorgresContext = createContext({
 
 export function UserPorgresContextProvider({ children }) {
   const [userProgress, setUserProgress] = useState("");
+
   const showCart = () => {
     setUserProgress("cart");
   };

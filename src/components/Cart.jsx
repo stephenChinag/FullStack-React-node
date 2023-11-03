@@ -7,16 +7,18 @@ import UserPorgresContext from "../store/UserProgressContext";
 
 const Cart = () => {
   const cartCtx = useContext(CartContext);
-  const userProgressts = useContext(UserPorgresContext);
-  const cartTotal = cartCtx.items.reduce((totalPrice, item) => {
-    totalPrice + item.quantity * item.price;
-  }, 0);
+  const userProgressCtx = useContext(UserPorgresContext);
+  const cartTotal = cartCtx.items.reduce(
+    (totalPrice, item) => totalPrice + item.quantity * item.price,
+    0
+  );
+  //
 
-  const closeModalHandler = () => {
-    userProgressts.hideCart();
-  };
+  function handleCloseCart() {
+    userProgressCtx.hideCart();
+  }
   return (
-    <Modal className="cart" open={userProgressts.progress === "cart"}>
+    <Modal className="cart" open={userProgressCtx.progress === "cart"}>
       <h1>Your Cart</h1>
       <ul>
         {cartCtx.items.map((item) => (
@@ -27,11 +29,10 @@ const Cart = () => {
       </ul>
       <p className="cart-total">{currencyFormmatter.format(cartTotal)}</p>
       <p className="modal-actions">
-        <Button textOnly onClick={closeModalHandler}>
-          {" "}
+        <Button textOnly onClick={handleCloseCart}>
           Close
         </Button>
-        <Button> Go to CheckOut</Button>
+        <Button onClick={handleCloseCart}> Go to CheckOut</Button>
       </p>
     </Modal>
   );

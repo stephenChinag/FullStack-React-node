@@ -5,15 +5,13 @@ import { UserPorgresContextProvider } from "./store/UserProgressContext";
 import Cart from "./components/Cart";
 function App() {
   return (
-    <>
-      <UserPorgresContextProvider>
-        <CartContextProvider>
-          <Header />
-          <Meals />
-          <Cart />
-        </CartContextProvider>
-      </UserPorgresContextProvider>
-    </>
+    <UserPorgresContextProvider>
+      <CartContextProvider>
+        <Header />
+        <Meals />
+        <Cart />
+      </CartContextProvider>
+    </UserPorgresContextProvider>
   );
 }
 
