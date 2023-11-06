@@ -13,15 +13,22 @@ async function sendHttpRequest(url, config) {
 }
 
 export default function useHttp() {
+  const [data, setData] = useState();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   async function sendRequenst() {
     setIsLoading(true);
     try {
       const resData = sendHttpRequest();
+      setData(resData);
     } catch (error) {
       setError(error.message || "something Went Wrong");
     }
     setIsLoading(false);
   }
+  return {
+    data,
+    isLoading,
+    error,
+  };
 }
