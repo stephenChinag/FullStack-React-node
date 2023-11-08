@@ -8,7 +8,7 @@ const Meals = () => {
     isLoading,
     error,
   } = useHttp("http://localhost:3000/meals", {}, []);
-
+  console.log(loadedMeals);
   if (isLoading) {
     return <p> Fetching Meals ..... </p>;
   }

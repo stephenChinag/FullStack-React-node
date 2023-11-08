@@ -21,7 +21,7 @@ export default function useHttp(url, config, initialData) {
     async function sendRequest() {
       setIsLoading(true);
       try {
-        const resData = sendHttpRequest(url, config);
+        const resData = await sendHttpRequest(url, config);
         setData(resData);
       } catch (error) {
         setError(error.message || "something Went Wrong");
@@ -32,10 +32,10 @@ export default function useHttp(url, config, initialData) {
   );
 
   useEffect(() => {
-    if (config && (config === "GET" || !config.method)) {
+    if ((config && (config === "GET" || !config.method)) || config) {
       sendRequest();
     }
-  }, [sendRequest]);
+  }, [sendRequest, config]);
 
   return {
     data,
