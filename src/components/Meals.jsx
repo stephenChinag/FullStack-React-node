@@ -3,8 +3,18 @@ import MealItem from "./MealItem";
 import useHttp from "../hooks/useHttp";
 
 const Meals = () => {
-  const { data, isLoading, error } = useHttp("http://localhost:3000/meals");
+  const {
+    data: loadedMeals,
+    isLoading,
+    error,
+  } = useHttp("http://localhost:3000/meals", {}, []);
 
+  if (isLoading) {
+    return <p> Fetching Meals ..... </p>;
+  }
+  // if (!loadedMeals) {
+  //   return <p> No meals Found</p>;
+  // }
   return (
     <>
       <ul id="meals">
