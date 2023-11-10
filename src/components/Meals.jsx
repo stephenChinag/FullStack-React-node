@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import MealItem from "./MealItem";
 import useHttp from "../hooks/useHttp";
 
+const reqConfig = {};
+
 const Meals = () => {
   const {
     data: loadedMeals,
     isLoading,
     error,
-  } = useHttp("http://localhost:3000/meals", {}, []);
+  } = useHttp("http://localhost:3000/meals", reqConfig, []);
   console.log(loadedMeals);
   if (isLoading) {
     return <p> Fetching Meals ..... </p>;
