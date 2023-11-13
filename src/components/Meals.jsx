@@ -10,7 +10,7 @@ const Meals = () => {
     data: loadedMeals,
     isLoading,
     error,
-  } = useHttp("http://localhost:3000/mealss", reqConfig, []);
+  } = useHttp("http://localhost:3000/meals", reqConfig, []);
   console.log(loadedMeals);
   if (isLoading) {
     return <p className="center"> Fetching Meals ..... </p>;
