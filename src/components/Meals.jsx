@@ -16,7 +16,7 @@ const Meals = () => {
     return <p className="center"> Fetching Meals ..... </p>;
   }
   if (error) {
-    return <Error title={"fail to Fetch Meals"} message={error} />;
+    return <Error title="fail to Fetch Meals" message={error} />;
   }
   return (
     <>

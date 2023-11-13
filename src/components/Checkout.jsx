@@ -5,10 +5,23 @@ import { currencyFormmatter } from "../util/formatting";
 import Input from "./UI/Input";
 import Button from "./UI/Button";
 import UserProgContext from "../store/UserProgressContext";
+import useHttp from "../hooks/useHttp";
+
+const requestConfig = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 
 function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgContext);
+
+  const { isLoading, data } = useHttp(
+    "http://localhost:3000/orders",
+    requestConfig
+  );
 
   function handleClose() {
     userProgressCtx.hideCheckOut();

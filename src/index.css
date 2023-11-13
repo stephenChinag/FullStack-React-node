@@ -210,6 +210,10 @@ h1 {
   gap: 1rem;
 }
 
+.error {
+  background-color: #ffffff;
+}
+
 .button {
   font: inherit;
   cursor: pointer;
