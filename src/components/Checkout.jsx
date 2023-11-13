@@ -18,7 +18,7 @@ function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgContext);
 
-  const { isLoading, data } = useHttp(
+  const { isLoading, data, sendRequest, error } = useHttp(
     "http://localhost:3000/orders",
     requestConfig
   );
@@ -34,16 +34,14 @@ function Checkout() {
     event.preventDefault();
     const fd = new FormData(event.target);
     const customerData = Object.fromEntries(fd.entries());
-    fetch("http://localhost:3000/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    sendRequest(
+      JSON.stringify({
         order: {
           items: cartCtx.items,
           customer: customerData,
         },
-      }),
-    });
+      })
+    );
   }
 
   return (
